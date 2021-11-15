@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\registercontroller;
 use App\Http\Controllers\sessioncontroller;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
@@ -16,4 +17,10 @@ Route::get('/login', [sessioncontroller::class, 'create'])
 ->middleware('guest')
 ->name('login.index');
 Route::post('/login', [sessioncontroller::class, 'store'])->name('login.store');
-Route::get('/logout', [sessioncontroller::class, 'destroy'])->name('login.destroy');
+Route::get('/logout', [sessioncontroller::class, 'destroy'])
+->middleware('auth')
+->name('login.destroy');
+
+route::get('/admin', [AdminController::class, 'index'])
+->middleware('auth.admin')
+->name('admin.index');

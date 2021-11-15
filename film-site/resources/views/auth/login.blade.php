@@ -19,7 +19,7 @@
 
         @error('message')
         <p class="border border-red-500 rounded-md bg-red-100 w-full
-        text-red-600 p-2 my-2">* ERORR</p>
+        text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
 
         <button type="submit" class="rounded-md bg-indigo-500 w-full text-lg text-white

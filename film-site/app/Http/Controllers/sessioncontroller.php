@@ -17,8 +17,13 @@ class sessioncontroller extends Controller
             return back()->withErrors([
                 'message' => 'El email o la clave son incorrectos initentalo denuevo',
             ]);
-        }
-        return redirect()->to('/');
+        } else {
+            if(auth()->user()->role == 'admin') {
+                return redirect()->route('admin.index');
+            }else {
+                return redirect()->to('/');
+            }
+        }     
     }
 
     public function destroy() {
