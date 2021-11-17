@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'inicia secion -')
+@section('title', 'inicia secion')
 
 @section('content')
 
 <div class="block mx-auto my-12 p-8 bg-gray w-1/3 border border-gray-200 rounded-lg shodow-lg">
 
-    <h1 class="text-3xl text-center font-bold">inicia secion en Film Site</h1>
+    <h1 class="text-3xl text-center font-bold">inicia sesion en Film Site</h1>
 
     <form class="mt-4" method="POST" action="">
         @csrf
