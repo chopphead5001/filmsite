@@ -33,9 +33,4 @@ class sessioncontroller extends Controller
         return redirect()->to('/');
     }
 
-    //public function index() {
-
-    //  return view('user.index');
-
-    //}
 }

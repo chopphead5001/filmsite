@@ -6,6 +6,7 @@ use App\Http\Controllers\sessioncontroller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\GuestController;
+use Resources\Views\user;
 
 Route::get('/', function () {
     return view('home');
@@ -36,9 +37,14 @@ route::get('/admin', [AdminController::class, 'index'])
 Route::get('/products', [ProductsController::class, 'index'])
 ->name('products.index');
 
+Route::post('/products/create', [ProductsController::class, 'store'])
+->name('products.store');
+
+Route::get('/create', [ProductsController::class, 'create'])
+->name('products.create');
+
+Route::resource('products', ProductsController::class);
+
 Route::get('/guest', [GuestController::class, 'index'])
 ->name('guest.index');
-
-//Route::get('/user', [sessioncontroller::class, 'index'])
-//->name('user.index');
 

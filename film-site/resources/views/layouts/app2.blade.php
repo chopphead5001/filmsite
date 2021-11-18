@@ -6,6 +6,9 @@
 
         <title>@yield('title') - Film Site</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.1/tailwind.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awsome.min.css">
+        <script src="https://kit.fontawesome.com/831f75aa65.js" crossorigin="anonymous"></script>
     </head>
     <body class="background-gray-100 text-gray-800">
 
@@ -18,10 +21,14 @@
             <ul class="w-1/2 px-16  ml-auto flex justify-end pt-1">
             
             @if(auth()->check())
-
+                
+                <li class="mx-1">
+                    <a href="{{ route('products.create') }}" class="font-semibold 
+                    hover:bg-indigo-700 py-3 px-4 rounded-md">Agregar</a>
+                </li>
                 <li class="mx-1">
                     <a href="{{ route('products.index') }}" class="font-semibold 
-                    hover:bg-indigo-700 py-3 px-4 rounded-md">CRU</a>
+                    hover:bg-indigo-700 py-3 px-4 rounded-md">Peliculas</a>
                 </li>
                 <li class="mx-1">
                     <p class="text-xl">Bienvenido <b>{{ auth()->user()->name }}</b></p>

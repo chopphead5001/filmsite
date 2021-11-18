@@ -6,6 +6,9 @@
 
         <title>@yield('title') - Film Site</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.1/tailwind.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awsome.min.css">
+        <script src="https://kit.fontawesome.com/831f75aa65.js" crossorigin="anonymous"></script>
     </head>
     <body class="background-gray-100 text-gray-800">
 
