@@ -25,10 +25,14 @@
 
             @if(auth()->check())
 
-                <li class="mx-1">
-                    <a href="{{ route('products.index') }}" class="font-semibold 
-                    hover:bg-indigo-700 py-3 px-4 rounded-md">Agregar pelicula</a>
-                </li>
+            <li class="mx-1">
+                <a href="{{ route('products.create') }}" class="font-semibold 
+                hover:bg-indigo-700 py-3 px-4 rounded-md">Agregar</a>
+            </li>
+            <li class="mx-1">
+                <a href="{{ route('products.index') }}" class="font-semibold 
+                hover:bg-indigo-700 py-3 px-4 rounded-md">Peliculas</a>
+            </li>
                 <li class="mx-1">
                     <p class="text-xl">Bienvenido <b>{{ auth()->user()->name }}</b></p>
                 </li>

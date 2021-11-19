@@ -28,6 +28,7 @@ class ProductsController extends Controller {
         $product->title = $request->title;
         $product->country = $request->country;
         $product->price = $request->price;
+        $product->userid = Auth()->user()->id;
 
         $product->save();
 
