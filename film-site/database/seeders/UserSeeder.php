@@ -20,8 +20,8 @@ class UserSeeder extends Seeder
             'email' => 'admin@test.com',
             'password' => bcrypt('1234'),
             'role' => 'admin',
-            'created_at' => $ldate = Carbon::now()->timezone('America/Argentina/Buenos_Aires'),
-            'updated_at' => $ldate = Carbon::now()->timezone('America/Argentina/Buenos_Aires'),
+            'created_at' => $ldate = Carbon::now(),
+            'updated_at' => $ldate = Carbon::now(),
         ]);
     }
 }

@@ -20,8 +20,8 @@ class ProductSeeder extends Seeder
             'country' => 'usa',
             'price' => 500,
             'userid' => 1,
-            'created_at' => $ldate = Carbon::now()->timezone('America/Argentina/Buenos_Aires'),
-            'updated_at' => $ldate = Carbon::now()->timezone('America/Argentina/Buenos_Aires'),
+            'created_at' => $ldate = Carbon::now(),
+            'updated_at' => $ldate = Carbon::now(),
         ]);
     }
 }

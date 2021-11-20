@@ -9,8 +9,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awsome.min.css">
         <script src="https://kit.fontawesome.com/831f75aa65.js" crossorigin="anonymous"></script>
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
     </head>
     <body class="background-gray-100 text-gray-800">
 

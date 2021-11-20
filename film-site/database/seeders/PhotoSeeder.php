@@ -18,8 +18,8 @@ class PhotoSeeder extends Seeder
         DB::table('photos')->insert([
             'name' => 'a',
             'path' => 'b',
-            'created_at' => $ldate = Carbon::now()->timezone('America/Argentina/Buenos_Aires'),
-            'updated_at' => $ldate = Carbon::now()->timezone('America/Argentina/Buenos_Aires'),
+            'created_at' => $ldate = Carbon::now(),
+            'updated_at' => $ldate = Carbon::now(),
         ]);
     }
 }
