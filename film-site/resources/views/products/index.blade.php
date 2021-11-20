@@ -10,16 +10,16 @@
         <thead>
             <tr class="bg-purple-400 text-white">
                 <th class="w-1/8 py-4 ...">ID</th>
-                <th class="w-1/4 py-4 ...">Title</th>
-                <th class="w-1/8 py-4 ...">country</th>
-                <th class="w-1/8 py-4 ...">price</th>
-                <th class="w-1/8 py-4 ...">Created</th>
-                <th class="w-1/8 py-4 ...">Updated</th>
-                <th class="w-1/8 py-4 ...">Actions</th>
+                <th class="w-1/4 py-4 ...">Titulo</th>
+                <th class="w-1/8 py-4 ...">Pais</th>
+                <th class="w-1/8 py-4 ...">Precio</th>
+                <th class="w-1/8 py-4 ...">Creado</th>
+                <th class="w-1/8 py-4 ...">Actualizado</th>
+                <th class="w-1/8 py-4 ...">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @if(auth()->user()->role == 'admin') {
+            @if(auth()->user()->role == 'admin') 
                 @foreach ($products as $row)
                 
                     <tr>
@@ -45,7 +45,7 @@
                     </tr>
 
                 @endforeach
-            }@else {
+            @else 
                 @foreach ($products as $row)
             
                     @if ($row->userid == Auth()->user()->id)
@@ -75,7 +75,7 @@
                     @endif
 
                 @endforeach
-            }
+
             @endif
 
         </tbody>

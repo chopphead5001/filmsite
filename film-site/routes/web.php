@@ -6,6 +6,7 @@ use App\Http\Controllers\sessioncontroller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\UploadImageController;
 use Resources\Views\user;
 
 Route::get('/', function () {
@@ -47,4 +48,10 @@ Route::resource('products', ProductsController::class);
 
 Route::get('/guest', [GuestController::class, 'index'])
 ->name('guest.index');
+
+Route::get('/upload-image', [UploadImageController::class, 'index'])
+->name('upload-image.index');
+
+Route::post('/save', [UploadImageController::class, 'save'])
+->name('upload-image.save');
 

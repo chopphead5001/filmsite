@@ -8,7 +8,7 @@
 
     <h1 class="text-3xl text-center font-bold">Crear pelicula</h1>
 
-    <form class="mt-4" method="POST" action="{{ route('products.store') }}">
+    <form class="mt-4" method="POST" action="{{ route('products.store') }}" >
         @csrf
 
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
@@ -19,7 +19,7 @@
 
         <input type="number" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
         p-2 my-2 focus:bg-white" placeholder="Precio" id="price" name="price">
-
+        
         @error('message')
         <p class="border border-red-500 rounded-md bg-red-100 w-full
         text-red-600 p-2 my-2">*ERROR</p>
