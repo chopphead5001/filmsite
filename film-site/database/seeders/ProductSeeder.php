@@ -23,5 +23,14 @@ class ProductSeeder extends Seeder
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);
+
+        DB::table('products')->insert([
+            'title' => 'halloween',
+            'country' => 'usa',
+            'price' => 400,
+            'userid' => 2,
+            'created_at' => $ldate = Carbon::now(),
+            'updated_at' => $ldate = Carbon::now(),
+        ]);
     }
 }

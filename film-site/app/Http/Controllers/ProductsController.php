@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Photo;
 
 class ProductsController extends Controller {
     
@@ -23,6 +24,13 @@ class ProductsController extends Controller {
 
     public function store(Request $request) {
 
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'title' => 'required',
+            'country' => 'required',
+            'price' => 'required',
+        ]);
+
         $product = new Product();
 
         $product->title = $request->title;
@@ -31,6 +39,18 @@ class ProductsController extends Controller {
         $product->userid = Auth()->user()->id;
 
         $product->save();
+    
+        $name = $request->file('image')->getClientOriginalName();
+    
+        $path = $request->file('image')->store('public/images');
+    
+    
+        $photo = new Photo;
+    
+        $photo->name = $name;
+        $photo->path = $path;
+    
+        $photo->save();
 
         return redirect()->route('products.index');
         
@@ -44,6 +64,12 @@ class ProductsController extends Controller {
     }
 
     public function update(Request $request, $id) {
+
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'country' => 'required',
+            'price' => 'required',
+        ]);
 
         $product = Product::find($id);
 

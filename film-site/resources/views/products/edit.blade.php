@@ -14,15 +14,25 @@
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
         p-2 my-2 focus:bg-white" placeholder="Titulo" id="title" name="title" value="{{ $product->title }}">
 
+        @error('title')
+        <p class="border border-red-500 rounded-md bg-red-100 w-full
+        text-red-600 p-2 my-2">* {{ $message }}</p>
+        @enderror
+
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
         text-lg p-2 my-2 focus:bg-white" placeholder="Pais" id="country" name="country" value="{{ $product->country }}">
+
+        @error('country')
+        <p class="border border-red-500 rounded-md bg-red-100 w-full
+        text-red-600 p-2 my-2">* {{ $message }}</p>
+        @enderror
 
         <input type="number" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
         p-2 my-2 focus:bg-white" placeholder="Precio" id="price" name="price" value="{{ $product->price }}">
 
-        @error('message')
+        @error('price')
         <p class="border border-red-500 rounded-md bg-red-100 w-full
-        text-red-600 p-2 my-2">*ERROR</p>
+        text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
 
         <button type="submit" class="rounded-md bg-green-300 w-full text-lg text-white
