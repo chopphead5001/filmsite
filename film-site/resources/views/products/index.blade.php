@@ -9,10 +9,13 @@
     <table class="min-w-full divide-y divide-gray-200 border-separate">
         <thead>
             <tr class="bg-purple-400 text-white">
-                <th class="w-1/8 py-4 ...">ID</th>
+                @if(auth()->user()->role == 'admin')
+                    <th class="w-1/16 py-4 ...">ID</th>
+                @endif
                 <th class="w-1/4 py-4 ...">Titulo</th>
                 <th class="w-1/8 py-4 ...">Pais</th>
-                <th class="w-1/8 py-4 ...">Precio</th>
+                <th class="w-1/16 py-4 ...">Precio</th>
+                <th class="w-1/8 py-4 ...">Portada</th>
                 <th class="w-1/8 py-4 ...">Creado</th>
                 <th class="w-1/8 py-4 ...">Actualizado</th>
                 <th class="w-1/8 py-4 ...">Acciones</th>
@@ -27,6 +30,7 @@
                         <td class="p-3 text-center">{{ $row->title }}</td>
                         <td class="p-3 text-center">{{ $row->country }}</td>
                         <td class="p-3 text-center">{{ $row->price }}</td>
+                        <td class="p-3 text-center"><img width="100px" src="{{ Storage::url($row->photopath) }}"></td>
                         <td class="p-3 text-center">{{ $row->created_at }}</td>
                         <td class="p-3 text-center">{{ $row->updated_at }}</td>
                         <td class="p-3 flex justify-center">
@@ -51,10 +55,10 @@
                     @if ($row->userid == Auth()->user()->id)
                         
                     <tr>
-                        <td class="py-3 px-6 text-center">{{ $row->id }}</td>
                         <td class="p-3 text-center">{{ $row->title }}</td>
                         <td class="p-3 text-center">{{ $row->country }}</td>
                         <td class="p-3 text-center">{{ $row->price }}</td>
+                        <td class="p-3 text-center"><img width="100px" src="{{ Storage::url($row->photopath) }}"></td>
                         <td class="p-3 text-center">{{ $row->created_at }}</td>
                         <td class="p-3 text-center">{{ $row->updated_at }}</td>
                         <td class="p-3 flex justify-center">

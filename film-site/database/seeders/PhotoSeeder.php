@@ -16,8 +16,7 @@ class PhotoSeeder extends Seeder
     public function run() {
 
         DB::table('photos')->insert([
-            'name' => 'a',
-            'path' => 'b',
+            'path' => 'images/default.jpg',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);

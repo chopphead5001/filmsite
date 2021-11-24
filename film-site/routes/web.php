@@ -48,10 +48,3 @@ Route::resource('products', ProductsController::class);
 
 Route::get('/guest', [GuestController::class, 'index'])
 ->name('guest.index');
-
-Route::get('/upload-image', [UploadImageController::class, 'index'])
-->name('upload-image.index');
-
-Route::post('/save', [UploadImageController::class, 'save'])
-->name('upload-image.save');
-

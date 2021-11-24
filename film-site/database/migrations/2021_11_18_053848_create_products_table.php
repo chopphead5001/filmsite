@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration {
             $table->string('country');
             $table->decimal('price');
             $table->string('userid');
+            $table->string('photopath');
             $table->timestamps();
         });
     }

@@ -36,7 +36,7 @@
         @enderror
 
         <input type="file" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
-        p-2 my-2 focus:bg-white" name="image" placeholder="Choose image" id="image">
+        p-2 my-2 focus:bg-white" name="image" placeholder="Choose image" id="image" accept="image/jpg, image/png, image/jpeg">
         
         @error('image')
         <p class="border border-red-500 rounded-md bg-red-100 w-full

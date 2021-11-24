@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
             'country' => 'usa',
             'price' => 500,
             'userid' => 1,
+            'photopath' => 'images/default.png',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);
@@ -29,6 +30,7 @@ class ProductSeeder extends Seeder
             'country' => 'usa',
             'price' => 400,
             'userid' => 2,
+            'photopath' => 'images/default.png',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);
