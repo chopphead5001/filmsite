@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Photo;
+use Storage;
 
 class ProductsController extends Controller {
     
@@ -39,19 +40,13 @@ class ProductsController extends Controller {
             $path = 'images/default.png';
         }
 
-        $photo = new Photo;
-
-        $photo->path = $path;
-    
-        $photo->save();
-
         $product = new Product();
 
         $product->title = $request->title;
         $product->country = $request->country;
         $product->price = $request->price;
         $product->userid = Auth()->user()->id;
-        $product->photopath = $photo->path;
+        $product->photopath = $path;
 
         $product->save();
 
@@ -69,6 +64,7 @@ class ProductsController extends Controller {
     public function update(Request $request, $id) {
 
         $validatedData = $request->validate([
+            'image' => 'image|mimes:jpg,png,jpeg|max:2048',
             'title' => 'required',
             'country' => 'required',
             'price' => 'required',
@@ -76,7 +72,30 @@ class ProductsController extends Controller {
 
         $product = Product::find($id);
 
-        $product->update($request->all());
+        if(file_exists($request->file('image'))){
+
+            $path = $request->file('image')->store('public/images');
+            
+            if($product->photopath == 'images/default.png'){
+            
+            }else{
+
+                Storage::delete($product->photopath);
+
+            }
+
+        }else{
+
+            $path = $product->photopath;
+
+        }
+
+        $product->title = $request->title;
+        $product->country = $request->country;
+        $product->price = $request->price;
+        $product->photopath = $path;
+
+        $product->update();
 
         return redirect()->route('products.index');
     }
@@ -84,6 +103,14 @@ class ProductsController extends Controller {
     public function destroy($id) {
 
         $product = Product::find($id);
+
+        if($product->photopath == 'images/default.png'){
+
+        }else{
+
+            Storage::delete($product->photopath);
+
+        }
 
         $product->delete();
 
