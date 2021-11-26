@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration {
-
+class ActorGroup extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -13,17 +13,13 @@ class CreateProductsTable extends Migration {
      */
     public function up() {
 
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('actorgroup', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('director');
             $table->string('actor');
-            $table->text('synopsis');
-            $table->string('year');
-            $table->string('userid');
-            $table->string('photopath');
+            $table->string('film');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -31,8 +27,8 @@ class CreateProductsTable extends Migration {
      *
      * @return void
      */
-    public function down() {
-
-        Schema::dropIfExists('products');
+    public function down()
+    {
+        Schema::dropIfExists('actorgroup');
     }
 }
