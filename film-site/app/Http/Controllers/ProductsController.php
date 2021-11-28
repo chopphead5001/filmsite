@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Photo;
 use Storage;
 
 class ProductsController extends Controller {
@@ -28,8 +27,9 @@ class ProductsController extends Controller {
         $validatedData = $request->validate([
             'image' => 'image|mimes:jpg,png,jpeg|max:2048',
             'title' => 'required',
-            'country' => 'required',
-            'price' => 'required',
+            'director' => 'required',
+            'synopsis' => 'required',
+            'year' => 'required',
         ]);
         
         if(file_exists($request->file('image'))){
@@ -43,14 +43,16 @@ class ProductsController extends Controller {
         $product = new Product();
 
         $product->title = $request->title;
-        $product->country = $request->country;
-        $product->price = $request->price;
+        $product->director = $request->director;
+        $product->actor = 'un coreano';
+        $product->synopsis = $request->synopsis;
+        $product->year = $request->year;
         $product->userid = Auth()->user()->id;
         $product->photopath = $path;
 
         $product->save();
 
-        return redirect()->route('products.index');
+        return redirect()->route('actorgroup.create');
         
     }
 
@@ -58,7 +60,8 @@ class ProductsController extends Controller {
 
         $product = Product::find($id);
 
-        return view('products.edit', compact('product'));       
+        return view('products.edit', compact('product'));
+    
     }
 
     public function update(Request $request, $id) {
@@ -66,8 +69,9 @@ class ProductsController extends Controller {
         $validatedData = $request->validate([
             'image' => 'image|mimes:jpg,png,jpeg|max:2048',
             'title' => 'required',
-            'country' => 'required',
-            'price' => 'required',
+            'director' => 'required',
+            'synopsis' => 'required',
+            'year' => 'required',
         ]);
 
         $product = Product::find($id);
@@ -91,13 +95,14 @@ class ProductsController extends Controller {
         }
 
         $product->title = $request->title;
-        $product->country = $request->country;
-        $product->price = $request->price;
+        $product->director = $request->director;
+        $product->synopsis = $request->synopsis;
+        $product->year = $request->year;
         $product->photopath = $path;
 
         $product->update();
 
-        return redirect()->route('products.index');
+        return redirect()->route('actorgroup.edit', $product->id);
     }
 
     public function destroy($id) {

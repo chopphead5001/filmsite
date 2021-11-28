@@ -6,7 +6,7 @@ use App\Http\Controllers\sessioncontroller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\UploadImageController;
+use App\Http\Controllers\Actor_groupsController;
 use Resources\Views\user;
 
 Route::get('/', function () {
@@ -45,6 +45,14 @@ Route::get('/create', [ProductsController::class, 'create'])
 ->name('products.create');
 
 Route::resource('products', ProductsController::class);
+
+Route::post('/actorgroup/create', [Actor_groupsController::class, 'store'])
+->name('actorgroup.store');
+
+Route::get('/create', [Actor_groupsController::class, 'create'])
+->name('actorgroup.create');
+
+Route::resource('actorgroup', Actor_groupsController::class);
 
 Route::get('/guest', [GuestController::class, 'index'])
 ->name('guest.index');

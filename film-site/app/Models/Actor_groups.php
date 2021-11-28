@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
-{
+class Actor_groups extends Model {
+
     use HasFactory;
 
-    protected $fillable =[
-        'title',
+    protected $fillable = [
         'actor',
-        'director',
-        'synopsis',
-        'year',
-        'photophat',
-        'userid',
+        'film'
     ];
 }

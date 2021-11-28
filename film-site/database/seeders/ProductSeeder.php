@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             'actor' => '2',
             'synopsis' => 'A finales de los 60, Hollywood empieza a cambiar y el actor Rick Dalton trata de adaptarse a los nuevos tiempos. Junto a su doble, ambos experimentan problemas para modificar sus hábitos, debido a lo enraizados que están. Al mismo tiempo, nace una relación entre Rick y la actriz Sharon Tate, que fue víctima de la familia Manson en la matanza de 1969.',
             'year' => '1980',
-            'userid' => 1,
+            'userid' => 2,
             'photopath' => 'images/default.png',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),

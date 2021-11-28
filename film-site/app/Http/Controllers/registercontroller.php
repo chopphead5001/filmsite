@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Htpp\Request;
 use App\Models\User;
+use App\Models\Product;
 
 class registercontroller extends Controller
 {

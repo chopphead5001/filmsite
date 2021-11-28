@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ActorGroup extends Migration
+class Actorgroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class ActorGroup extends Migration
      */
     public function up() {
 
-        Schema::create('actorgroup', function (Blueprint $table) {
+        Schema::create('actor_groups', function (Blueprint $table) {
             $table->id();
             $table->string('actor');
             $table->string('film');

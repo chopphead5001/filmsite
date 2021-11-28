@@ -20,17 +20,25 @@
         @enderror
 
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
-        text-lg p-2 my-2 focus:bg-white" placeholder="Pais" id="country" name="country" value="{{ $product->country }}">
+        text-lg p-2 my-2 focus:bg-white" placeholder="Director" id="director" name="director" value="{{ $product->director }}">
 
-        @error('country')
+        @error('director')
+        <p class="border border-red-500 rounded-md bg-red-100 w-full
+        text-red-600 p-2 my-2">* {{ $message }}</p>
+        @enderror
+
+        <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
+        text-lg p-2 my-2 focus:bg-white" placeholder="Synopsis" id="synopsis" name="synopsis" value="{{ $product->synopsis }}">
+
+        @error('synopsis')
         <p class="border border-red-500 rounded-md bg-red-100 w-full
         text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
 
         <input type="number" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
-        p-2 my-2 focus:bg-white" placeholder="Precio" id="price" name="price" value="{{ $product->price }}">
+        p-2 my-2 focus:bg-white" placeholder="Estreno" id="year" name="year" value="{{ $product->year }}">
 
-        @error('price')
+        @error('year')
         <p class="border border-red-500 rounded-md bg-red-100 w-full
         text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
