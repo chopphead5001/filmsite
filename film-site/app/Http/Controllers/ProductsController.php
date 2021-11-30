@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Storage;
@@ -10,10 +11,17 @@ class ProductsController extends Controller {
     
     public function index() {
 
-        $products = Product::all();
+        if(is_null(DB::table('products')->where('userid', auth()->user()->id)->first())){
 
-        return view('products.index', compact('products'));
+            return redirect()->route('products.create')->with('message', 'Usted no tiene ninguna pelicula, por favor agregue su primer gran obra.');
 
+        }else{
+
+            $products = Product::all();
+
+            return view('products.index', compact('products'));
+
+        }
     }
 
     public function create() {

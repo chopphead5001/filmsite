@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Actor_groups;
 use App\Models\Product;
@@ -34,7 +35,9 @@ class Actor_groupsController extends Controller {
 
     public function edit($id) {
 
-        $actorgroup = Actor_groups::find($id);
+        $actorgroup = DB::table('actor_groups')
+        ->where('film', $id)
+        ->first();
 
         return view('actorgroup.edit', compact('actorgroup'));       
     }

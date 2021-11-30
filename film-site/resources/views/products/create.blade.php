@@ -11,6 +11,11 @@
     <form class="mt-4" method="POST" enctype="multipart/form-data" action="{{ route('products.store') }}" >
         @csrf
 
+        @if(Session::has('message'))
+            <p class="border border-yellow-500 rounded-md bg-yellow-100 w-full
+            text-pink-900 p-2 my-2 font-semibold">{{ Session::get('message') }}</p>
+        @endif
+
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
         p-2 my-2 focus:bg-white" placeholder="Titulo" id="title" name="title">
 
