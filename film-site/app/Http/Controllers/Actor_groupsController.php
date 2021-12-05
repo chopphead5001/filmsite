@@ -7,29 +7,76 @@ use Illuminate\Http\Request;
 use App\Models\Actor_groups;
 use App\Models\Product;
 use Storage;
+use Session;
 
 class Actor_groupsController extends Controller {
 
     public function create() {
 
-        return view('actorgroup.create');
+        $film = DB::table('products')
+        ->where('id', Session::get('film'))
+        ->first();
 
+        return view('actorgroup.create', compact('film'));   
     }
 
     public function store(Request $request) {
 
-        $validatedData = $request->validate([
-            'actor' => 'required',
-        ]);
+        $id = Session::get('film');
 
-        $actorgroup = new Actor_groups();
+        if($request->input('add')){
 
-        $actorgroup->actor = $request->actor;
-        $actorgroup->film = 3;
+            $validatedData = $request->validate([
+                'actor' => 'required',
+            ]);
+            
+            $actorgroup = new Actor_groups();
 
-        $actorgroup->save();
+            $actorgroup->actor = $request->actor;
+            $actorgroup->film = $id;
 
-        return redirect()->route('products.index');
+            $actorgroup->save();
+
+            return redirect()->route('actorgroup.create')
+            ->with('message', 'Actor agregado, agregue un nuevo artista o finalice la operacion.');
+        }
+
+        if($request->input('end')){
+
+            if( $request->filled('actor')){
+
+           
+            $actorgroup = new Actor_groups();
+
+            $actorgroup->actor = $request->actor;
+            $actorgroup->film = $id;
+
+            $actorgroup->save();
+
+            return redirect()->route('products.index')
+            ->with('message', 'Pelicula creada con exito');
+
+            }else{
+
+                $actorgroupexist = DB::table('actor_groups')
+                ->where('film', $id)
+                ->first();
+
+                if (is_null($actorgroupexist)){
+
+                return redirect()->route('actorgroup.create')
+                ->with('message', 'Usted no ha agregado ningun actor, por favor agregue al menos 1');
+
+                }else{
+
+                    return redirect()->route('products.index')
+                    ->with('message', 'Pelicula creada con exito');
+
+                }     
+                
+            }
+
+        }
         
     }
 
@@ -37,26 +84,52 @@ class Actor_groupsController extends Controller {
 
         $actorgroup = DB::table('actor_groups')
         ->where('film', $id)
-        ->first();
+        ->get();
 
         return view('actorgroup.edit', compact('actorgroup'));       
     }
 
     public function update(Request $request, $id) {
 
-        $validatedData = $request->validate([
-            'actor' => 'required',
-        ]);
+        $film = Session::get('film');
 
-        $actorgroup = Actor_groups::find($id);
+        if($request->input('edit')){
 
-        $actorgroup->actor = $request->actor;
+            $validatedData = $request->validate([
+                'actor' => 'required',
+            ]);
+    
+            $actorgroup = Actor_groups::find($id);
+    
+            $actorgroup->actor = $request->actor;
 
-        $actorgroup->update();
+            $edited = $actorgroup->actor;
+    
+            $actorgroup->update();
 
-        return redirect()->route('products.index');
+            return redirect()->back()
+            ->with('message', 'Actor editado, edite otro o finalice la operacion.');
 
+        }
+        
+        if($request->input('end')){
 
+            $validatedData = $request->validate([
+                'actor' => 'required',
+            ]);
+    
+            $actorgroup = Actor_groups::find($id);
+    
+            $actorgroup->actor = $request->actor;
+    
+            $actorgroup->update();
+    
+
+            return redirect()->route('products.index')
+            ->with('message', 'Pelicula editada con exito');
+
+        }        
+        
     }
 
 }

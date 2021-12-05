@@ -5,6 +5,11 @@
 @section('content')
 
     <div class="bg-white overflow-hidden shadow-xl">
+
+        @if(Session::has('message'))
+            <p class="border border-yellow-500 rounded-md bg-yellow-100 w-full
+            text-pink-900 p-2 my-2 font-semibold">{{ Session::get('message') }}</p>
+        @endif
             
         <table class="min-w-full divide-y divide-gray-200 border-separate">
             <thead>
@@ -15,6 +20,7 @@
                     @endif
                     <th class="w-1/4 py-4 ...">Titulo</th>
                     <th class="w-1/8 py-4 ...">Director</th>
+                    <th class="w-1/8 py-4 ...">Actores</th>
                     <th class="w-1/16 py-4 ...">Sinopsis</th>
                     <th class="w-1/16 py-4 ...">Estreno</th>
                     <th class="w-1/8 py-4 ...">Portada</th>
@@ -49,6 +55,20 @@
                                 <td class="py-3 px-6 text-center font-semibold">{{ $row->id }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
+                                <td class="p-3 text-center font-semibold">
+                                    
+                                    @foreach ($actorgroup as $item)
+                                        
+                                        @if ($item->film == $row->id)
+
+                                        {{ $item->actor }}
+
+                                        <br>
+
+                                        @endif
+                                        
+                                    @endforeach
+                                </td>
                                 <td class="p-3 text-center font-semibold">{{ $row->synopsis }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->year }}</td>
                                 <td class="p-3 text-center font-semibold"><img width="100px" src="{{ Storage::url($row->photopath) }}"></td>

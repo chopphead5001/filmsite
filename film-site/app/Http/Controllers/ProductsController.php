@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Actor_groups;
 use Storage;
+use Session;
 
 class ProductsController extends Controller {
     
@@ -13,13 +15,16 @@ class ProductsController extends Controller {
 
         if(is_null(DB::table('products')->where('userid', auth()->user()->id)->first())){
 
-            return redirect()->route('products.create')->with('message', 'Usted no tiene ninguna pelicula, por favor agregue su primer gran obra.');
+            return redirect()->route('products.create')
+            ->with('message', 'Usted no tiene ninguna pelicula, por favor agregue su primer gran obra.');
 
         }else{
 
             $products = Product::all();
 
-            return view('products.index', compact('products'));
+            $actorgroup = Actor_groups::all();
+
+            return view('products.index', compact('products', 'actorgroup'));
 
         }
     }
@@ -59,6 +64,8 @@ class ProductsController extends Controller {
         $product->photopath = $path;
 
         $product->save();
+
+        Session::put('film', $product->id);
 
         return redirect()->route('actorgroup.create');
         
@@ -110,6 +117,8 @@ class ProductsController extends Controller {
 
         $product->update();
 
+        Session::put('film', $product->id);
+
         return redirect()->route('actorgroup.edit', $product->id);
     }
 
@@ -127,8 +136,11 @@ class ProductsController extends Controller {
 
         $product->delete();
 
-        return redirect()->route('products.index');
+        DB::table('actor_groups')->where('film',$id)->delete();
 
+        return redirect()->route('products.index')
+        ->with('message', 'Pelicula eliminada con exito');
+        
     }
 
 }
