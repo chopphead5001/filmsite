@@ -16,17 +16,18 @@
                 <tr class="bg-purple-300 text-white">  
                     
                     @if(auth()->user()->role == 'admin')
-                        <th class="w-1/16 py-4 ...">ID</th>
+                        <th class="w-1/10 py-4 ...">ID</th>
                     @endif
-                    <th class="w-1/4 py-4 ...">Titulo</th>
-                    <th class="w-1/8 py-4 ...">Director</th>
-                    <th class="w-1/8 py-4 ...">Actores</th>
-                    <th class="w-1/16 py-4 ...">Sinopsis</th>
-                    <th class="w-1/16 py-4 ...">Estreno</th>
-                    <th class="w-1/8 py-4 ...">Portada</th>
-                    <th class="w-1/8 py-4 ...">Creado</th>
-                    <th class="w-1/8 py-4 ...">Actualizado</th>
-                    <th class="w-1/8 py-4 ...">Acciones</th>
+                    <th class="w-1/10 py-4 ...">Titulo</th>
+                    <th class="w-1/10 py-4 ...">Director</th>
+                    <th class="w-1/10 py-4 ...">Actores</th>
+                    <th class="w-1/10 py-4 ...">Sinopsis</th>
+                    <th class="w-1/10 py-4 ...">Estreno</th>
+                    <th class="w-1/10 py-4 ...">Portada</th>
+                    <th class="w-1/10 py-4 ...">Creado</th>
+                    <th class="w-1/10 py-4 ...">Actualizado</th>
+                    <th class="w-1/10 py-4 ...">Acciones</th>
+                    
                 </tr>
             </thead>
 
@@ -55,19 +56,21 @@
                                 <td class="py-3 px-6 text-center font-semibold">{{ $row->id }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
-                                <td class="p-3 text-center font-semibold">
-                                    
+                                <td id="actor" class="p-3 text-center font-semibold">
+
                                     @foreach ($actorgroup as $item)
+
                                         
                                         @if ($item->film == $row->id)
 
-                                        {{ $item->actor }}
+                                            {{ $item->actor }},
 
-                                        <br>
+                                            <br>
 
                                         @endif
                                         
                                     @endforeach
+
                                 </td>
                                 <td class="p-3 text-center font-semibold">{{ $row->synopsis }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->year }}</td>
@@ -117,7 +120,23 @@
 
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
-                                <td class="p-3 text-center font-semibold">{{ $row->synopsis }}</td>                                    <td class="p-3 text-center font-semibold">{{ $row->year }}</td>
+                                <td class="p-3 text-center font-semibold">
+                                    
+                                    @foreach ($actorgroup as $item)
+                                        
+                                        @if ($item->film == $row->id)
+
+                                            {{ $item->actor }},
+
+                                            <br>
+
+                                        @endif
+                                        
+                                    @endforeach
+
+                                </td>
+                                <td class="p-3 text-center font-semibold">{{ $row->synopsis }}</td>                                    
+                                <td class="p-3 text-center font-semibold">{{ $row->year }}</td>
                                 <td class="p-3 text-center font-semibold"><img width="100px" src="{{ Storage::url($row->photopath) }}"></td>
                                 <td class="p-3 text-center font-semibold">{{ $row->created_at }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->updated_at }}</td>

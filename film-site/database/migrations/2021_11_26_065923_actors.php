@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Director extends Migration
+class Actors extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class Director extends Migration
      * @return void
      */
     public function up() {
-
-        Schema::create('director', function (Blueprint $table) {
+    
+        Schema::create('actors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -28,6 +28,6 @@ class Director extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('director');
+        Schema::dropIfExists('actor');
     }
 }

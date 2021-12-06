@@ -23,9 +23,15 @@
         <p class="border border-red-500 rounded-md bg-red-100 w-full
         text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
+        
+        <select class="border border-gray-200 rounded-md bg-gray-200 w-full
+        text-lg p-2 my-2 focus:bg-white" name="director" id="director">
+        @foreach ($directors as $d)
+         
+        <option value="{{ $d->name }}"> {{ $d->name }} </option>
 
-        <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
-        text-lg p-2 my-2 focus:bg-white" placeholder="Director" id="director" name="director">
+        @endforeach
+        </select>
 
         @error('director')
         <p class="border border-red-500 rounded-md bg-red-100 w-full

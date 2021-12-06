@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Actor_groups;
 use App\Models\Product;
+use App\Models\Actors;
 use Storage;
 use Session;
 
@@ -17,7 +18,9 @@ class Actor_groupsController extends Controller {
         ->where('id', Session::get('film'))
         ->first();
 
-        return view('actorgroup.create', compact('film'));   
+        $actors = Actors::all();
+
+        return view('actorgroup.create', compact('film', 'actors'));   
     }
 
     public function store(Request $request) {

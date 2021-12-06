@@ -16,28 +16,28 @@ class Actor_groupSeeder extends Seeder
     public function run() {
 
         DB::table('actor_groups')->insert([
-            'actor' => '11',
+            'actor' => 'Henry Thomas',
             'film' => '1',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);
 
         DB::table('actor_groups')->insert([
-            'actor' => '12',
+            'actor' => 'Pat Welsh',
             'film' => '1',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);
 
         DB::table('actor_groups')->insert([
-            'actor' => '13',
+            'actor' => 'Robert MacNaughton',
             'film' => '1',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);
 
         DB::table('actor_groups')->insert([
-            'actor' => '9',
+            'actor' => 'Laonardo Dicaprio',
             'film' => '2',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),

@@ -16,8 +16,14 @@
             text-pink-900 p-2 my-2 font-semibold">{{ Session::get('message') }}</p>
         @endif
 
-        <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg
-        p-2 my-2 focus:bg-white" placeholder="Actor" id="actor" name="actor">
+        <select class="border border-gray-200 rounded-md bg-gray-200 w-full
+        text-lg p-2 my-2 focus:bg-white" name="actor" id="actor">
+        @foreach ($actors as $a)
+         
+        <option value="{{ $a->name }}"> {{ $a->name }} </option>
+
+        @endforeach
+        </select>
 
         @error('actor')
         <p class="border border-red-500 rounded-md bg-red-100 w-full

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Actors;
+use App\Models\Directors;
 use App\Models\Actor_groups;
 use Storage;
 use Session;
@@ -31,7 +33,9 @@ class ProductsController extends Controller {
 
     public function create() {
 
-        return view('products.create');
+        $directors = Directors::all();
+
+        return view('products.create', compact('directors'));
 
     }
 
@@ -57,7 +61,6 @@ class ProductsController extends Controller {
 
         $product->title = $request->title;
         $product->director = $request->director;
-        $product->actor = 'un coreano';
         $product->synopsis = $request->synopsis;
         $product->year = $request->year;
         $product->userid = Auth()->user()->id;
@@ -117,8 +120,6 @@ class ProductsController extends Controller {
 
         $product->update();
 
-        Session::put('film', $product->id);
-
         return redirect()->route('actorgroup.edit', $product->id);
     }
 
@@ -138,9 +139,18 @@ class ProductsController extends Controller {
 
         DB::table('actor_groups')->where('film',$id)->delete();
 
+        if(is_null(DB::table('products')->where('userid', auth()->user()->id)->first())){
+
+            return redirect()->route('products.create')
+            ->with('message', 'Pelicula eliminada con exito. Lamentablemente no hemos encontrado ningun filme,
+            agregue uno para empezar a disfrutar del mejor cine.');
+
+        }else{
+
         return redirect()->route('products.index')
-        ->with('message', 'Pelicula eliminada con exito');
-        
+        ->with('message', 'Pelicula eliminada con exito.');
+
+        }
     }
 
 }
