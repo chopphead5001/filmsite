@@ -89,26 +89,42 @@ class Actor_groupsController extends Controller {
         ->where('film', $id)
         ->get();
 
-        return view('actorgroup.edit', compact('actorgroup'));       
+        $actors = Actors::all();
+
+        $product = Session::get('film');
+
+        return view('actorgroup.edit', compact('actorgroup', 'actors', 'product'));       
     }
 
     public function update(Request $request, $id) {
 
         $film = Session::get('film');
 
+        $count = 0;
+
         if($request->input('edit')){
 
-            $validatedData = $request->validate([
-                'actor' => 'required',
-            ]);
-    
-            $actorgroup = Actor_groups::find($id);
-    
-            $actorgroup->actor = $request->actor;
+            $actorgroup = DB::table('actor_groups')
+            ->where('film', $id)
+            ->get();
+                
+            foreach($actorgroup as $item){
 
-            $edited = $actorgroup->actor;
-    
-            $actorgroup->update();
+            $count ++;
+
+            $actorselected = 'actor'.$count;
+
+            $validatedData = $request->validate([
+                $actorselected => 'required',
+            ]);
+
+            $actorgroupselected = DB::table('actor_groups')
+            
+            ->where('actor', $request->$actorselected)
+            ->where('film', $id)
+            ->update(['actor' => $request->$actorselected]);
+
+            }
 
             return redirect()->back()
             ->with('message', 'Actor editado, edite otro o finalice la operacion.');
@@ -117,21 +133,32 @@ class Actor_groupsController extends Controller {
         
         if($request->input('end')){
 
+            $actorgroup = DB::table('actor_groups')
+            ->where('film', $id)
+            ->get();
+                
+            foreach($actorgroup as $item){
+
+            $count ++;
+
+            $actorselected = 'actor'.$count;
+
             $validatedData = $request->validate([
-                'actor' => 'required',
+                $actorselected => 'required',
             ]);
-    
-            $actorgroup = Actor_groups::find($id);
-    
-            $actorgroup->actor = $request->actor;
-    
-            $actorgroup->update();
-    
+
+            $actorgroupselected = DB::table('actor_groups')
+            ->where('film', $id)
+            ->where('actor', $request->$actorselected)
+            ->update(['actor' => $request->$actorselected]);
+
+            }
 
             return redirect()->route('products.index')
             ->with('message', 'Pelicula editada con exito');
 
-        }        
+        }
+        
         
     }
 

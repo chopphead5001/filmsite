@@ -8,7 +8,7 @@
 
     <h1 class="text-3xl text-center font-bold">inicia sesion en Film Site</h1>
 
-    <form class="mt-4" method="POST" action="">
+    <form class="mt-4" method="POST" action="{{ route('login.store') }}">
         @csrf
 
         <input type="email" class="border border-gray-200 rounded-md bg-gray-200 w-full

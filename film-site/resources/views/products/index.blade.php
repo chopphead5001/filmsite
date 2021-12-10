@@ -13,7 +13,7 @@
             
         <table class="min-w-full divide-y divide-gray-200 border-separate">
             <thead>
-                <tr class="bg-purple-300 text-white">  
+                <tr class="bg-yellow-400 text-pink-900">  
                     
                     @if(auth()->user()->role == 'admin')
                         <th class="w-1/10 py-4 ...">ID</th>
@@ -45,11 +45,11 @@
                             
                         @if ($paroimpar == 0)
 
-                            <tr class="bg-pink-200 text-white">
+                            <tr class="bg-purple-600 text-white">
 
                         @else
                                 
-                            <tr class="bg-indigo-200 text-white">
+                            <tr class="bg-gray-600 text-white">
 
                         @endif
                             
@@ -110,11 +110,11 @@
                         
                             @if ($paroimpar == 0)
 
-                                <tr class="bg-pink-200 text-white">
+                                <tr class="bg-purple-600 text-white">
 
                             @else
                                     
-                                <tr class="bg-indigo-200 text-white">
+                                <tr class="bg-gray-600 text-white">
                                 
                             @endif
 

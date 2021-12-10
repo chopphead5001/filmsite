@@ -19,8 +19,22 @@
         text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
 
-        <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
-        text-lg p-2 my-2 focus:bg-white" placeholder="Director" id="director" name="director" value="{{ $product->director }}">
+        <select class="border border-gray-200 rounded-md bg-gray-200 w-full
+        text-lg p-2 my-2 focus:bg-white" name="director" id="director">
+        @foreach ($directors as $d)
+         
+        @if ($d->name == $product->director)
+
+        <option selected value= "{{ $d->name }}"> {{ $d->name }} </option>
+
+        @else
+
+        <option value= "{{ $d->name }}"> {{ $d->name }} </option>
+            
+        @endif
+
+        @endforeach
+        </select>
 
         @error('director')
         <p class="border border-red-500 rounded-md bg-red-100 w-full

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Htpp\Request;
 use App\Models\User;
+use App\Models\Product;
 
 class sessioncontroller extends Controller
 {
+
     public function create() {
         return view('auth.login');
     }
@@ -17,12 +19,12 @@ class sessioncontroller extends Controller
             return back()->withErrors([
                 'message' => 'El email o la clave son incorrectos initentalo denuevo',
             ]);
-        } else {
-            if(auth()->user()->role == 'admin') {
-                return redirect()->route('admin.index');
-            }else {
-                return redirect()->to('/');
-            }
+        } elseif(auth()->user()) {
+            
+            $products = Product::latest()->take(10)->get();
+
+            return redirect()->route('main.home');
+            
         }     
     }
 
@@ -30,7 +32,7 @@ class sessioncontroller extends Controller
 
         auth()->logout();
 
-        return redirect()->to('/');
+        return redirect()->route('login.index');
     }
 
 }

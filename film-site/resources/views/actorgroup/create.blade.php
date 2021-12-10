@@ -18,6 +18,9 @@
 
         <select class="border border-gray-200 rounded-md bg-gray-200 w-full
         text-lg p-2 my-2 focus:bg-white" name="actor" id="actor">
+
+        <option disabled="disabled" selected>Seleccione un actor</option>
+        
         @foreach ($actors as $a)
          
         <option value="{{ $a->name }}"> {{ $a->name }} </option>

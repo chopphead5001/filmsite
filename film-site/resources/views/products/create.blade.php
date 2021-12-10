@@ -26,6 +26,9 @@
         
         <select class="border border-gray-200 rounded-md bg-gray-200 w-full
         text-lg p-2 my-2 focus:bg-white" name="director" id="director">
+
+        <option disabled="disabled" selected>Seleccione un director</option>
+
         @foreach ($directors as $d)
          
         <option value="{{ $d->name }}"> {{ $d->name }} </option>

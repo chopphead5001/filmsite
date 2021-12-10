@@ -9,50 +9,69 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\Actor_groupsController;
 use Resources\Views\user;
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+route::post('home/selected', [AdminController::class, 'selected'])
+->name('main.selected');
+
+Route::get('/home/selected', function () {
+    return abort(404);
+});
+
+route::get('/home', [AdminController::class, 'index'])
+->name('main.home');
 
 Route::get('/register', [registercontroller::class, 'create'])
-->name('register.index');
-
-Route::post('/register', [registercontroller::class, 'store'])
 ->middleware('guest')
 ->name('register.index');
 
-Route::get('/login', [sessioncontroller::class, 'create'])
+Route::post('/register/store', [registercontroller::class, 'store'])
+->name('register.store');
+
+Route::get('/register/store', function () {
+    return abort(404);
+});
+
+Route::get('/', [sessioncontroller::class, 'create'])
 ->middleware('guest')
 ->name('login.index');
 
-Route::post('/login', [sessioncontroller::class, 'store'])
+Route::post('/login/store', [sessioncontroller::class, 'store'])
 ->name('login.store');
+
+Route::get('/login/store', function () {
+    return abort(404);
+});
 
 Route::get('/logout', [sessioncontroller::class, 'destroy'])
 ->middleware('auth')
 ->name('login.destroy');
 
-route::get('/admin', [AdminController::class, 'index'])
-->middleware('auth.admin')
-->name('admin.index');
-
 Route::get('/products', [ProductsController::class, 'index'])
 ->name('products.index');
 
 Route::post('/products/create', [ProductsController::class, 'store'])
+->middleware('auth')
 ->name('products.store');
 
 Route::get('/create', [ProductsController::class, 'create'])
+->middleware('auth')
 ->name('products.create');
 
-Route::resource('products', ProductsController::class);
+Route::resource('products', ProductsController::class)
+->middleware('auth');
 
 Route::post('/actorgroup/create', [Actor_groupsController::class, 'store'])
+->middleware('auth')
 ->name('actorgroup.store');
 
 Route::get('/create', [Actor_groupsController::class, 'create'])
+->middleware('auth')
 ->name('actorgroup.create');
 
-Route::resource('actorgroup', Actor_groupsController::class);
+Route::get('/create', function () {
+    return abort(404);
+});
 
-Route::get('/guest', [GuestController::class, 'index'])
-->name('guest.index');
+Route::resource('actorgroup', Actor_groupsController::class)
+->middleware('auth');
+
+

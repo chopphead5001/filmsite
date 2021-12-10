@@ -28,6 +28,7 @@ class UserSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@test.com',
             'password' => bcrypt('1234'),
+            'role' => 'user',
             'created_at' => $ldate = Carbon::now(),
             'updated_at' => $ldate = Carbon::now(),
         ]);

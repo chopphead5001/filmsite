@@ -18,7 +18,7 @@ class ProductsController extends Controller {
         if(is_null(DB::table('products')->where('userid', auth()->user()->id)->first())){
 
             return redirect()->route('products.create')
-            ->with('message', 'Usted no tiene ninguna pelicula, por favor agregue su primer gran obra.');
+            ->with('message', 'Usted no tiene ninguna pelicula, por favor agregue su primer filme.');
 
         }else{
 
@@ -43,10 +43,10 @@ class ProductsController extends Controller {
 
         $validatedData = $request->validate([
             'image' => 'image|mimes:jpg,png,jpeg|max:2048',
-            'title' => 'required',
+            'title' => 'required|max:50',
             'director' => 'required',
             'synopsis' => 'required',
-            'year' => 'required',
+            'year' => 'required|integer|min:1900|max:2050',
         ]);
         
         if(file_exists($request->file('image'))){
@@ -78,7 +78,9 @@ class ProductsController extends Controller {
 
         $product = Product::find($id);
 
-        return view('products.edit', compact('product'));
+        $directors = Directors::all();
+
+        return view('products.edit', compact('product', 'directors'));
     
     }
 
@@ -86,10 +88,10 @@ class ProductsController extends Controller {
 
         $validatedData = $request->validate([
             'image' => 'image|mimes:jpg,png,jpeg|max:2048',
-            'title' => 'required',
+            'title' => 'required|max:50',
             'director' => 'required',
             'synopsis' => 'required',
-            'year' => 'required',
+            'year' => 'required|integer|min:1900|max:2050',
         ]);
 
         $product = Product::find($id);
@@ -119,6 +121,8 @@ class ProductsController extends Controller {
         $product->photopath = $path;
 
         $product->update();
+
+        Session::put('film', $product);
 
         return redirect()->route('actorgroup.edit', $product->id);
     }

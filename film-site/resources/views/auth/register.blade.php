@@ -8,11 +8,11 @@
 
     <h1 class="text-3xl text-center font-bold">registrate en Film Site</h1>
 
-    <form class="mt-4" method="POST" action="">
+    <form class="mt-4" method="POST" action="{{ route('register.store') }}">
         @csrf
 
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
-        text-lg p-2 my-2 focus:bg-white" placeholder="Nombre" id="name" name="name">
+        text-lg p-2 my-2 focus:bg-white" placeholder="Nombre de usuario" id="name" name="name">
 
         @error('name')
         <p class="border border-red-500 rounded-md bg-red-100 w-full

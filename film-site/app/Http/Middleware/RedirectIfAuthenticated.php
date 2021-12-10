@@ -22,9 +22,14 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect()->to('/');
+            if (Auth::guard($guard)->check() && Auth::user()->role == 'user') {
+                return redirect()->back();
             }
+
+            if (Auth::guard($guard)->check() && Auth::user()->role == 'admin') {
+                return redirect()->back();
+            }
+
         }
 
         return $next($request);
