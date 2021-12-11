@@ -45,10 +45,10 @@
                             
                         @if ($paroimpar == 0)
 
-                            <tr class="bg-purple-600 text-white">
+                            <tr class="bg-gray-400 text-black">
 
                         @else
-                                
+                            
                             <tr class="bg-gray-600 text-white">
 
                         @endif
@@ -110,12 +110,12 @@
                         
                             @if ($paroimpar == 0)
 
-                                <tr class="bg-purple-600 text-white">
+                                <tr class="bg-gray-400 text-black">
 
                             @else
-                                    
-                                <tr class="bg-gray-600 text-white">
                                 
+                                <tr class="bg-gray-600 text-white">
+
                             @endif
 
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>

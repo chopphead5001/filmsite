@@ -76,11 +76,29 @@ class ProductsController extends Controller {
 
     public function edit($id) {
 
-        $product = Product::find($id);
+        $film = DB::table('products')
+        ->where('id', $id)
+        ->first();
 
-        $directors = Directors::all();
+        if(is_null($film)) {
 
-        return view('products.edit', compact('product', 'directors'));
+            abort(404);
+
+        }
+
+        if($film->userid == auth()->user()->id || auth()->user()->role == 'admin') {
+
+            $product = Product::find($id);
+
+            $directors = Directors::all();
+
+            return view('products.edit', compact('product', 'directors'));
+
+        }else {
+
+            abort(404);
+
+        }
     
     }
 
@@ -155,6 +173,12 @@ class ProductsController extends Controller {
         ->with('message', 'Pelicula eliminada con exito.');
 
         }
+    }
+
+    public function show($id) {
+
+        abort(404);
+
     }
 
 }

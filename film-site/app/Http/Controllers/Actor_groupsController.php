@@ -20,7 +20,20 @@ class Actor_groupsController extends Controller {
 
         $actors = Actors::all();
 
+        if(is_null($film)){
+
+            abort(404);
+
+        }
+
         return view('actorgroup.create', compact('film', 'actors'));   
+    }
+
+    public function add(Request $request) {
+
+        Session::put('film', $request->invisible);
+
+        return redirect()->route('actorgroup.create');  
     }
 
     public function store(Request $request) {
@@ -73,7 +86,7 @@ class Actor_groupsController extends Controller {
                 }else{
 
                     return redirect()->route('products.index')
-                    ->with('message', 'Pelicula creada con exito');
+                    ->with('message', 'Operacion finalizada con exito');
 
                 }     
                 
@@ -85,81 +98,93 @@ class Actor_groupsController extends Controller {
 
     public function edit($id) {
 
+        $film = DB::table('products')
+        ->where('id', $id)
+        ->first();
+
+        if(is_null($film)) {
+
+            abort(404);
+
+        }
+
+        if($film->userid == auth()->user()->id || auth()->user()->role == 'admin') {
+
+            $actorgroup = DB::table('actor_groups')
+            ->where('film', $id)
+            ->get();
+
+            $actors = Actors::all();
+
+            $product = Session::get('film');
+                
+            return view('actorgroup.edit', compact('actorgroup', 'actors', 'product'));
+
+        }else {
+
+            abort(404);
+
+        }
+
+    }
+
+    public function selected(Request $request) {
+
         $actorgroup = DB::table('actor_groups')
-        ->where('film', $id)
-        ->get();
+        ->where('id', $request->invisible)
+        ->first();
+
+        if(is_null($actorgroup)){
+
+            abort(404);
+
+        }
 
         $actors = Actors::all();
 
-        $product = Session::get('film');
+        return view('actorgroup.selected', compact('actorgroup', 'actors'));
 
-        return view('actorgroup.edit', compact('actorgroup', 'actors', 'product'));       
     }
 
     public function update(Request $request, $id) {
 
-        $film = Session::get('film');
+        if($request->input('upgrade')){
 
-        $count = 0;
+            $actorgroup = Actor_groups::find($id);
 
-        if($request->input('edit')){
+            $actorgroup->actor = $request->actor;
 
-            $actorgroup = DB::table('actor_groups')
-            ->where('film', $id)
-            ->get();
-                
-            foreach($actorgroup as $item){
-
-            $count ++;
-
-            $actorselected = 'actor'.$count;
-
-            $validatedData = $request->validate([
-                $actorselected => 'required',
-            ]);
-
-            $actorgroupselected = DB::table('actor_groups')
-            
-            ->where('actor', $request->$actorselected)
-            ->where('film', $id)
-            ->update(['actor' => $request->$actorselected]);
-
-            }
-
-            return redirect()->back()
-            ->with('message', 'Actor editado, edite otro o finalice la operacion.');
-
-        }
-        
-        if($request->input('end')){
-
-            $actorgroup = DB::table('actor_groups')
-            ->where('film', $id)
-            ->get();
-                
-            foreach($actorgroup as $item){
-
-            $count ++;
-
-            $actorselected = 'actor'.$count;
-
-            $validatedData = $request->validate([
-                $actorselected => 'required',
-            ]);
-
-            $actorgroupselected = DB::table('actor_groups')
-            ->where('film', $id)
-            ->where('actor', $request->$actorselected)
-            ->update(['actor' => $request->$actorselected]);
-
-            }
-
+            $actorgroup->update();
+  
             return redirect()->route('products.index')
-            ->with('message', 'Pelicula editada con exito');
+            ->with('message', 'Pelicula editada con exito.');
 
         }
-        
-        
+
+    }
+
+    public function destroy($id) {
+
+        $actorgroup = Actor_groups::find($id);
+
+        $actorgroup->delete();
+  
+        return redirect()->route('products.index')
+        ->with('message', 'Actor eliminado con exito.');
+
+
+    }
+
+    public function show($id) {
+
+        abort(404);
+
+    }
+
+    public function index() {
+
+        abort(404);
+
     }
 
 }

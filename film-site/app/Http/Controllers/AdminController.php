@@ -37,10 +37,17 @@ class AdminController extends Controller {
         $product = DB::table('Products')
         ->where('id', $request->invisible)
         ->first();
+        
+        if(is_null($product)){
+
+            abort(404);
+
+        }
 
         if(!auth()->user()) {
 
             return view('guest.selected', compact('product', 'actorgroup'));
+
         }elseif(auth()->user()->role) {
 
         return view('main.selected', compact('product', 'actorgroup'));

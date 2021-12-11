@@ -13,7 +13,7 @@ route::post('home/selected', [AdminController::class, 'selected'])
 ->name('main.selected');
 
 Route::get('/home/selected', function () {
-    return abort(404);
+    return back();
 });
 
 route::get('/home', [AdminController::class, 'index'])
@@ -63,15 +63,29 @@ Route::post('/actorgroup/create', [Actor_groupsController::class, 'store'])
 ->middleware('auth')
 ->name('actorgroup.store');
 
-Route::get('/create', [Actor_groupsController::class, 'create'])
+Route::get('/actorgroup/create', [Actor_groupsController::class, 'create'])
 ->middleware('auth')
 ->name('actorgroup.create');
 
-Route::get('/create', function () {
+Route::get('/actorgroup/create', function () {
     return abort(404);
+});
+
+Route::post('/actorgroup/add', [Actor_groupsController::class, 'add'])
+->middleware('auth')
+->name('actorgroup.add');
+
+Route::get('/actorgroup/add', function () {
+    return abort(404);
+});
+
+Route::post('/actorgroup/selected', [Actor_groupsController::class, 'selected'])
+->middleware('auth')
+->name('actorgroup.selected');
+
+Route::get('/actorgroup/selected', function () {
+    return back();
 });
 
 Route::resource('actorgroup', Actor_groupsController::class)
 ->middleware('auth');
-
-
