@@ -29,7 +29,7 @@ aqui ejecutaremos los sigientes comandos...
 
 2.php artisan storage:link 
 
-(anted de seguir: en el folder public crea la carpeta storage(no confundir con el folder storage por default) dentro de este mismo folder que acabamos de crear, creamos un nuevo folder llamado images y aqui agregaremos una imagen png con el nombre default(esto sera para las peliculas que no tengan una imagen, eliga una acorde a la tematica), esto quedara tal que asi film-site/public/storage/images/default.png)
+(anted de seguir:en el folder storage que se acaba de crear dentro de film-site/public creamos un nuevo folder llamado images y aqui agregaremos una imagen png con el nombre default(esto sera para las peliculas que no tengan una imagen, eliga una acorde a la tematica), esto quedara tal que asi film-site/public/storage/images/default.png)
 
 3.php artisan migrate:fresh
 
