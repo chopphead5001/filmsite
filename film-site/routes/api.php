@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiDirectorsController;
+use App\Http\Controllers\ApiProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/directors', [ApiDirectorsController::class, 'index']);
+
+
+Route::get('/products', [ApiProductsController::class, 'index']);
