@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Actors;
 use App\Models\Directors;
 use App\Models\Actor_groups;
+use App\Models\Genres;
 use Storage;
 use Session;
 
@@ -26,7 +27,9 @@ class ProductsController extends Controller {
 
             $actorgroup = Actor_groups::all();
 
-            return view('products.index', compact('products', 'actorgroup'));
+            $genres = Genres::all();
+
+            return view('products.index', compact('products', 'actorgroup', 'genres'));
 
         }
     }
@@ -35,7 +38,9 @@ class ProductsController extends Controller {
 
         $directors = Directors::all();
 
-        return view('products.create', compact('directors'));
+        $genres = Genres::all();
+
+        return view('products.create', compact('directors', 'genres'));
 
     }
 
@@ -45,6 +50,7 @@ class ProductsController extends Controller {
             'image' => 'image|mimes:jpg,png,jpeg|max:2048',
             'title' => 'required|max:50',
             'director' => 'required',
+            'genre' => 'required',
             'synopsis' => 'required',
             'year' => 'required|integer|min:1900|max:2050',
         ]);
@@ -61,6 +67,7 @@ class ProductsController extends Controller {
 
         $product->title = $request->title;
         $product->director = $request->director;
+        $product->genre = $request->genre;
         $product->synopsis = $request->synopsis;
         $product->year = $request->year;
         $product->userid = Auth()->user()->id;
@@ -92,7 +99,9 @@ class ProductsController extends Controller {
 
             $directors = Directors::all();
 
-            return view('products.edit', compact('product', 'directors'));
+            $genres = Genres::all();
+
+            return view('products.edit', compact('product', 'directors', 'genres'));
 
         }else {
 
@@ -108,6 +117,7 @@ class ProductsController extends Controller {
             'image' => 'image|mimes:jpg,png,jpeg|max:2048',
             'title' => 'required|max:50',
             'director' => 'required',
+            'genre' => 'required',
             'synopsis' => 'required',
             'year' => 'required|integer|min:1900|max:2050',
         ]);
@@ -134,6 +144,7 @@ class ProductsController extends Controller {
 
         $product->title = $request->title;
         $product->director = $request->director;
+        $product->genre = $request->genre;
         $product->synopsis = $request->synopsis;
         $product->year = $request->year;
         $product->photopath = $path;

@@ -41,6 +41,28 @@
         text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
 
+        <select class="border border-gray-200 rounded-md bg-gray-200 w-full
+        text-lg p-2 my-2 focus:bg-white" name="genre" id="genre">
+        @foreach ($genres as $d)
+         
+        @if ($d->name == $product->genre)
+
+        <option selected value= "{{ $d->name }}"> {{ $d->name }} </option>
+
+        @else
+
+        <option value= "{{ $d->name }}"> {{ $d->name }} </option>
+            
+        @endif
+
+        @endforeach
+        </select>
+
+        @error('genre')
+        <p class="border border-red-500 rounded-md bg-red-100 w-full
+        text-red-600 p-2 my-2">* {{ $message }}</p>
+        @enderror
+
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
         text-lg p-2 my-2 focus:bg-white" placeholder="Synopsis" id="synopsis" name="synopsis" value="{{ $product->synopsis }}">
 

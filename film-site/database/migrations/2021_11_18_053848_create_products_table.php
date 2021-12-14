@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration {
             $table->id();
             $table->string('title');
             $table->string('director');
+            $table->string('genre');
             $table->text('synopsis');
             $table->string('year');
             $table->string('userid');

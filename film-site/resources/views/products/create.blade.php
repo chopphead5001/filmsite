@@ -41,6 +41,23 @@
         text-red-600 p-2 my-2">* {{ $message }}</p>
         @enderror
 
+        <select class="border border-gray-200 rounded-md bg-gray-200 w-full
+        text-lg p-2 my-2 focus:bg-white" name="genre" id="genre">
+
+        <option disabled="disabled" selected>Seleccione un genero</option>
+
+        @foreach ($genres as $d)
+         
+        <option value="{{ $d->name }}"> {{ $d->name }} </option>
+
+        @endforeach
+        </select>
+
+        @error('genre')
+        <p class="border border-red-500 rounded-md bg-red-100 w-full
+        text-red-600 p-2 my-2">* {{ $message }}</p>
+        @enderror
+
         <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
         text-lg p-2 my-2 focus:bg-white" placeholder="Sinopsis" id="synopsis" name="synopsis">
 

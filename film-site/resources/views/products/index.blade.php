@@ -20,6 +20,7 @@
                     @endif
                     <th class="w-1/10 py-4 ...">Titulo</th>
                     <th class="w-1/10 py-4 ...">Director</th>
+                    <th class="w-1/10 py-4 ...">Genero</th>
                     <th class="w-1/10 py-4 ...">Actores</th>
                     <th class="w-1/10 py-4 ...">Sinopsis</th>
                     <th class="w-1/10 py-4 ...">Estreno</th>
@@ -56,6 +57,7 @@
                                 <td class="py-3 px-6 text-center font-semibold">{{ $row->id }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
+                                <td class="p-3 text-center font-semibold">{{ $row->genre }}</td>
                                 <td id="actor" class="p-3 text-center font-semibold">
 
                                     @foreach ($actorgroup as $item)
@@ -120,6 +122,7 @@
 
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
+                                <td class="p-3 text-center font-semibold">{{ $row->genre }}</td>
                                 <td class="p-3 text-center font-semibold">
                                     
                                     @foreach ($actorgroup as $item)
