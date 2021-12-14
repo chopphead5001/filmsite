@@ -16,6 +16,20 @@ Route::get('/home/selected', function () {
     return back();
 });
 
+route::post('home/directorselected', [AdminController::class, 'directorselected'])
+->name('main.directorselected');
+
+Route::get('/home/directorselected', function () {
+    return back();
+});
+
+route::post('home/actorselected', [AdminController::class, 'actorselected'])
+->name('main.actorselected');
+
+Route::get('/home/actorselected', function () {
+    return back();
+});
+
 route::get('/home', [AdminController::class, 'index'])
 ->name('main.home');
 

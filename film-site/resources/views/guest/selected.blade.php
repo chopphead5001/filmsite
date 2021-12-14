@@ -1,63 +1,81 @@
 @extends('layouts.app3')
 
-@section('title', 'admin')
+@section('title', 'pelicula seleccionada')
 
 @section('content')
 
 <div class="block mx-auto my-12 p-8 bg-gray-400 w-1/3 border border-gray-200 rounded-lg shodow-lg">
 
-    <h1 class="text-3xl text-center font-bold">Pelicula mas reciente</h1>
+    <div class="rounded-md bg-purple w-full text-lg text-pink-900
+    font-semibold p-2 my-3 hover:bg-yellow-100 border border-pink-900 rounded-lg shodow-lg">
 
     <br>
-
-    <button class="rounded-md bg-purple w-full text-lg text-pink-900
-        font-semibold p-2 my-3 hover:bg-yellow-100 border border-pink-900 rounded-lg shodow-lg" type="submit" id="film_selected" name="btn_add">
 
     <img class="img-responsive"  src="{{ Storage::url($product->photopath) }}">
 
     <br>
 
-    <p>{{ $product->title }}</p>
+    <p class="text-center">{{ $product->title }}</p>
 
     <br>
 
-    <p class="text-indigo-600">Sinopsis</p>
+    <p class="text-indigo-600 text-center">Sinopsis</p>
 
     <br>
 
-    <p>{{ $product->synopsis }}</p>
+    <p class="text-center">{{ $product->synopsis }}</p>
 
     <br>
 
-    <p class="text-indigo-600">Director</p>
+    <p class="text-indigo-600 text-center">Director</p>
 
     <br>
 
-    <p>{{ $product->director }}</p>
+    <form method="POST" action="{{ route('main.directorselected') }}">
+                                                
+        @csrf
+
+        <input id="invisible" name="invisible" type="hidden" value="{{  $product->director }}">
+            
+        <button class="w-full">
+        {{ $product->director }}
+        </button>
+            
+    </form>
+
+    </p>
 
     <br>
 
-    <p class="text-indigo-600">Estreno</p>
+    <p class="text-indigo-600 text-center">Estreno</p>
 
     <br>
 
-    <p>{{ $product->year }}</p>
+    <p class="text-center">{{ $product->year }}</p>
 
     <br>
 
-    <p class="text-indigo-600">Actores</p>
+    <p class="text-indigo-600 text-center">Actores</p>
 
     <br>
 
-    @foreach ($actorgroup as $row)
+    @foreach ($actorgroup as $item)
 
-    <p>{{ $row->actor }}</p>
+        <form method="POST" action="{{ route('main.actorselected') }}">
+                                                
+            @csrf
 
-    <br>
+            <input id="invisible" name="invisible" type="hidden" value="{{  $item->actor }}">
 
+            <button class="w-full">
+                <p>{{ $item->actor }},</p>
+            <button>
+
+        </form>
+                                        
     @endforeach
 
-    </button>
+    </div>
 
 </div>
 

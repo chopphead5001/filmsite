@@ -70,7 +70,7 @@ class Actor_groupsController extends Controller {
             $actorgroup->save();
 
             return redirect()->route('products.index')
-            ->with('message', 'Pelicula creada con exito');
+            ->with('message', 'Operacion realizada con exito');
 
             }else{
 

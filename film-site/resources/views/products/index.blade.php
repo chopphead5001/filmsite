@@ -56,7 +56,19 @@
                             
                                 <td class="py-3 px-6 text-center font-semibold">{{ $row->id }}</td>
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
-                                <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
+                                <td class="p-3 text-center font-semibold">
+                                    <form method="POST" action="{{ route('main.directorselected') }}">
+                                                
+                                    @csrf
+
+                                    <input id="invisible" name="invisible" type="hidden" value="{{  $row->director }}">
+                                    
+                                    <button class="">
+                                    {{ $row->director }}
+                                    </button>
+                                    
+                                    </form>
+                                </td>
                                 <td class="p-3 text-center font-semibold">{{ $row->genre }}</td>
                                 <td id="actor" class="p-3 text-center font-semibold">
 
@@ -65,9 +77,17 @@
                                         
                                         @if ($item->film == $row->id)
 
-                                            {{ $item->actor }},
+                                            <form method="POST" action="{{ route('main.actorselected') }}">
+                                                
+                                                @csrf
 
-                                            <br>
+                                                <input id="invisible" name="invisible" type="hidden" value="{{  $item->actor }}">
+
+                                                <button class="">
+                                                    {{ $item->actor }},
+                                                </button>
+
+                                            </form>
 
                                         @endif
                                         
@@ -121,21 +141,42 @@
                             @endif
 
                                 <td class="p-3 text-center font-semibold">{{ $row->title }}</td>
-                                <td class="p-3 text-center font-semibold">{{ $row->director }}</td>
+                                <td class="p-3 text-center font-semibold">
+                                    <form method="POST" action="{{ route('main.directorselected') }}">
+                                                
+                                        @csrf
+    
+                                        <input id="invisible" name="invisible" type="hidden" value="{{  $row->director }}">
+                                        
+                                        <button class="">
+                                        {{ $row->director }}
+                                        </button>
+                                        
+                                    </form>
+                                </td>
                                 <td class="p-3 text-center font-semibold">{{ $row->genre }}</td>
                                 <td class="p-3 text-center font-semibold">
                                     
-                                    @foreach ($actorgroup as $item)
+                                @foreach ($actorgroup as $item)
+
                                         
-                                        @if ($item->film == $row->id)
+                                    @if ($item->film == $row->id)
 
-                                            {{ $item->actor }},
+                                        <form method="POST" action="{{ route('main.actorselected') }}">
+                                            
+                                            @csrf
 
-                                            <br>
+                                            <input id="invisible" name="invisible" type="hidden" value="{{  $item->actor }}">
 
-                                        @endif
-                                        
-                                    @endforeach
+                                            <button class="">
+                                                {{ $item->actor }},
+                                            </button>
+
+                                        </form>
+
+                                    @endif
+                                    
+                                @endforeach
 
                                 </td>
                                 <td class="p-3 text-center font-semibold">{{ $row->synopsis }}</td>                                    

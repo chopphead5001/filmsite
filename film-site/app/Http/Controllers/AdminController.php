@@ -55,4 +55,59 @@ class AdminController extends Controller {
         }
 
     }
+
+    public function actorselected(Request $request) {
+
+        $actorgroupfilm = DB::table('actor_groups')
+        ->where('actor', $request->invisible)
+        ->get();
+
+        $actorgroup = Actor_groups::all();
+
+        $product = Product::all();
+
+        if(is_null($product)){
+
+            abort(404);
+
+        }
+
+        if(!auth()->user()) {
+
+            return view('guest.actorselected', compact('product', 'actorgroup', 'actorgroupfilm'));
+
+        }elseif(auth()->user()->role) {
+
+        return view('main.actorselected', compact('product', 'actorgroup', 'actorgroupfilm'));
+        
+        }
+
+    }
+
+    public function directorselected(Request $request) {
+
+        $actorgroup = Actor_groups::all();
+
+        $product = DB::table('Products')
+        ->where('director', $request->invisible)
+        ->get();
+
+        if(is_null($product)){
+
+            abort(404);
+
+        }
+
+        if(!auth()->user()) {
+
+            return view('guest.directorselected', compact('product', 'actorgroup'));
+
+        }elseif(auth()->user()->role) {
+
+        return view('main.directorselected', compact('product', 'actorgroup'));
+        
+        }
+
+    }
+
 }
