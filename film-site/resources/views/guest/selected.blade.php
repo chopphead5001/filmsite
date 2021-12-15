@@ -37,13 +37,21 @@
 
         <input id="invisible" name="invisible" type="hidden" value="{{  $product->director }}">
             
-        <button class="w-full">
+        <button class="w-full font-semibold">
         {{ $product->director }}
         </button>
             
     </form>
 
-    </p>
+    <br>
+
+    <p class="text-indigo-600 text-center">genero</p>
+
+    <br>
+
+    <p class="text-center">{{ $product->genre }}</p>
+
+    <br>
 
     <br>
 
@@ -67,7 +75,7 @@
 
             <input id="invisible" name="invisible" type="hidden" value="{{  $item->actor }}">
 
-            <button class="w-full">
+            <button class="w-full font-semibold">
                 <p>{{ $item->actor }},</p>
             <button>
 

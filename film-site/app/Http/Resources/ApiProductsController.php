@@ -16,9 +16,7 @@ class ApiProductsController extends JsonResource
     {
         //return parent::toArray($request);
 
-        if($this->photopath == "images/default.png"){
-
-        }else{
+        if(!($this->photopath == "images/default.png")){
 
             return [
                 "id" => $this->id,

@@ -77,6 +77,10 @@ Route::post('/actorgroup/create', [Actor_groupsController::class, 'store'])
 ->middleware('auth')
 ->name('actorgroup.store');
 
+Route::get('/actorgroup/edited', [Actor_groupsController::class, 'finish'])
+->middleware('auth')
+->name('actorgroup.finish');
+
 Route::get('/actorgroup/create', [Actor_groupsController::class, 'create'])
 ->middleware('auth')
 ->name('actorgroup.create');

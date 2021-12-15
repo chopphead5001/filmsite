@@ -63,7 +63,7 @@
 
                                     <input id="invisible" name="invisible" type="hidden" value="{{  $row->director }}">
                                     
-                                    <button class="">
+                                    <button class="font-semibold">
                                     {{ $row->director }}
                                     </button>
                                     
@@ -83,7 +83,7 @@
 
                                                 <input id="invisible" name="invisible" type="hidden" value="{{  $item->actor }}">
 
-                                                <button class="">
+                                                <button class="font-semibold">
                                                     {{ $item->actor }},
                                                 </button>
 
@@ -148,7 +148,7 @@
     
                                         <input id="invisible" name="invisible" type="hidden" value="{{  $row->director }}">
                                         
-                                        <button class="">
+                                        <button class="font-semibold">
                                         {{ $row->director }}
                                         </button>
                                         
@@ -168,7 +168,7 @@
 
                                             <input id="invisible" name="invisible" type="hidden" value="{{  $item->actor }}">
 
-                                            <button class="">
+                                            <button class="font-semibold">
                                                 {{ $item->actor }},
                                             </button>
 

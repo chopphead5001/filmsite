@@ -128,6 +128,13 @@ class Actor_groupsController extends Controller {
 
     }
 
+    public function finish() {
+
+        return redirect()->route('products.index')
+        ->with('message', 'Pelicula editada con exito.');
+
+    }
+
     public function selected(Request $request) {
 
         $actorgroup = DB::table('actor_groups')

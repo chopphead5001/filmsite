@@ -38,6 +38,15 @@
 
     </form>
 
+    <form class="mt-4" method="get" enctype="multipart/form-data" action="{{ route('actorgroup.finish') }}">
+
+        @csrf
+
+        <button type="submit" class="rounded-md bg-green-300 w-full text-lg text-white
+        font-semibold p-2 my-3 hover:bg-green-400">Finalizar edicion</button>
+
+    </form>
+
 </div>
    
 @endsection
